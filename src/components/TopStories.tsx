@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import CircularProgress from "@mui/material/CircularProgress";
+import Pagination from "@mui/material/Pagination";
 
 const axiosStoriesUrl =
   "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
@@ -40,7 +42,11 @@ export const TopStories: React.FC = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <CircularProgress />
+      </div>
+    );
   }
 
   if (isError) {
@@ -48,16 +54,19 @@ export const TopStories: React.FC = () => {
   }
 
   return (
-    <ul>
-      {StoriesItems.map((item: StoryItem) => (
-        <li key={item.id}>
-          <a href={item.url}>{item.title}</a>
-          <p>
-            {item.score} points by {item.by} -{" "}
-            {new Date(item.time * 1000).toLocaleDateString()}
-          </p>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul>
+        {StoriesItems.map((item: StoryItem) => (
+          <li key={item.id}>
+            <a href={item.url}>{item.title}</a>
+            <p>
+              {item.score} points by {item.by} -{" "}
+              {new Date(item.time * 1000).toLocaleDateString()}
+            </p>
+          </li>
+        ))}
+      </ul>
+      <Pagination count={10} shape='rounded' />
+    </div>
   );
 };
