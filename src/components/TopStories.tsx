@@ -29,12 +29,15 @@ const fetchStories = async (): Promise<StoryItem[]> => {
   return stories;
 };
 
-export const StoriesContainer: React.FC = () => {
+export const TopStories: React.FC = () => {
   const {
     data: StoriesItems = [],
     isLoading,
     isError,
-  } = useQuery(["stories"], fetchStories);
+  } = useQuery(["stories"], fetchStories, {
+    refetchOnWindowFocus: false,
+    refetchInterval: 1000 * 580,
+  });
 
   if (isLoading) {
     return <div>Loading...</div>;

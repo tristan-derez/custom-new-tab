@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import "./App.css";
-import { StoriesContainer } from "./components/StoriesContainer";
+import { TopStories } from "./components/TopStories";
 
 const queryClient = new QueryClient();
 
@@ -10,7 +10,7 @@ function App() {
     <>
       <div>
         <QueryClientProvider client={queryClient}>
-          <StoriesContainer />
+          <TopStories />
         </QueryClientProvider>
       </div>
     </>
