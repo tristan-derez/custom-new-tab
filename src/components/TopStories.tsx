@@ -73,6 +73,7 @@ export const TopStories: React.FC = () => {
         justifyContent='center'
         alignItems='stretch'
         spacing={4}
+        className='topstories'
       >
         {StoriesItems.map((item: StoryItem) => (
           <Grid item>
@@ -86,7 +87,7 @@ export const TopStories: React.FC = () => {
           </Grid>
         ))}
       </Grid>
-      <Stack spacing={2}>
+      <Stack spacing={2} justifyContent='center' alignItems='center'>
         <Pagination count={2} shape='rounded' />
       </Stack>
     </div>
