@@ -3,9 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import { styled } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
 import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
+import { Stack } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+import { useState } from "react";
 
 const axiosStoriesUrl =
   "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
@@ -21,9 +22,11 @@ type StoryItem = {
   url: string;
 };
 
-const fetchStories = async (): Promise<StoryItem[]> => {
+const fetchStories = async (page: number): Promise<StoryItem[]> => {
   const response = await axios.get(axiosStoriesUrl);
-  const ids = response.data.slice(0, 5);
+  const start = (page - 1) * 5;
+  const end = start + 5;
+  const ids = response.data.slice(start, end);
   const stories = await Promise.all(
     ids.map(async (id: number) => {
       const itemResponse = await axios.get(
@@ -44,14 +47,23 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const TopStories: React.FC = () => {
+  const [page, setPage] = useState(1);
+
   const {
     data: StoriesItems = [],
     isLoading,
     isError,
-  } = useQuery(["stories"], fetchStories, {
+  } = useQuery(["stories", page], () => fetchStories(page), {
     refetchOnWindowFocus: false,
     refetchInterval: 1000 * 580,
   });
+
+  const handlePageChange = (
+    _event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setPage(value);
+  };
 
   if (isLoading) {
     return (
@@ -76,8 +88,8 @@ export const TopStories: React.FC = () => {
         className='topstories'
       >
         {StoriesItems.map((item: StoryItem) => (
-          <Grid item>
-            <Item key={item.id}>
+          <Grid item key={item.id}>
+            <Item>
               <a href={item.url}>{item.title}</a>
               <p>
                 {item.score} points by {item.by} -{" "}
@@ -88,7 +100,12 @@ export const TopStories: React.FC = () => {
         ))}
       </Grid>
       <Stack spacing={2} justifyContent='center' alignItems='center'>
-        <Pagination count={2} shape='rounded' />
+        <Pagination
+          count={StoriesItems.length}
+          page={page}
+          onChange={handlePageChange}
+          shape='rounded'
+        />
       </Stack>
     </div>
   );

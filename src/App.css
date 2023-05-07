@@ -1,5 +1,5 @@
 #root {
-  max-width: 100svw;
+  width: 100svw;
   margin: 0;
   padding: 0;
   min-height: 100svh;
@@ -20,6 +20,8 @@ li {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  min-width: 100%;
+  max-width: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -42,4 +44,9 @@ a:hover {
   top: 20px;
   right: 20px;
   font-weight: 300;
+}
+
+.MuiBox-root {
+  width: 100%;
+  min-width: 100%;
 }
