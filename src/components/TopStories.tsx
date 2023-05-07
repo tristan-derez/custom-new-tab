@@ -7,14 +7,6 @@ import Stack from "@mui/material/stack";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-
 const axiosStoriesUrl =
   "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
 
@@ -42,6 +34,14 @@ const fetchStories = async (): Promise<StoryItem[]> => {
   );
   return stories;
 };
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 export const TopStories: React.FC = () => {
   const {
@@ -72,7 +72,7 @@ export const TopStories: React.FC = () => {
         direction='column'
         justifyContent='center'
         alignItems='stretch'
-        spacing={4}
+        spacing={2}
         className='topstories'
       >
         {StoriesItems.map((item: StoryItem) => (
