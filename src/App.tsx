@@ -7,7 +7,6 @@ import { SearchBar } from "./components/SearchBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Stack from "@mui/material/Stack";
-import { Link } from "@mui/material";
 
 const queryClient = new QueryClient();
 
