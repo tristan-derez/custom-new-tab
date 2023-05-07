@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { styled } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
 import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/stack";
+import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
