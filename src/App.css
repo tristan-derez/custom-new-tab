@@ -32,3 +32,14 @@ a {
 a:visited {
   color: orange;
 }
+
+a:hover {
+  text-decoration: underline;
+}
+
+.gmail-link {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-weight: 300;
+}

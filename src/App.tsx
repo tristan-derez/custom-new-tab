@@ -7,6 +7,7 @@ import { SearchBar } from "./components/SearchBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Stack from "@mui/material/Stack";
+import { Link } from "@mui/material";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,12 @@ function App() {
     <>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
+        <a
+          href='https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox'
+          className='gmail-link'
+        >
+          Gmail
+        </a>
         <div className='main-container'>
           <Stack spacing={2}>
             <SearchBar />
