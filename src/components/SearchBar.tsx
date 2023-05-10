@@ -29,7 +29,7 @@ export const SearchBar = () => {
             label='Search'
             id='fullWidth'
             onChange={handleChange}
-            color='warning'
+            color='info'
           />
         </form>
       </Box>
