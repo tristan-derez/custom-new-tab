@@ -67,9 +67,18 @@ export const TopStories: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div>
+      <Grid
+        container
+        minHeight='531.156px'
+        minWidth='500px'
+        direction='column'
+        justifyContent='center'
+        alignItems='center'
+        spacing={2}
+        className='loading'
+      >
         <CircularProgress />
-      </div>
+      </Grid>
     );
   }
 
