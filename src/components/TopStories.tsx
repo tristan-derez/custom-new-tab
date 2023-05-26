@@ -83,7 +83,20 @@ export const TopStories: React.FC = () => {
   }
 
   if (isError) {
-    return <div>Error fetching stories</div>;
+    return (
+      <Grid
+        container
+        minHeight='531.156px'
+        minWidth='500px'
+        direction='column'
+        justifyContent='center'
+        alignItems='center'
+        spacing={2}
+        className='loading'
+      >
+        Error loading content
+      </Grid>
+    );
   }
 
   return (
